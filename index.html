@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="stylesheet.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    </head>
+    <body class = "bg-dark">
+       
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-lg-3">
+            <div class="container">
+                <a href="#" class="navbar-brand h1"> <i class="bi bi-book-half"></i>
+                    My<span class="text-primary">Book</span>List</a>
+                <button
+                 class="navbar-toggler"
+                 type="button"
+                 data-bs-toggle="collapse"
+                 data-bs-target="#menu" >
+                 <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="li nav-item px-lg-5">
+                            <a href="#" class="nav-link">About</a>
+                        </li>
+                        <li class="li nav-item px-lg-5">
+                            <a href="#" class="nav-link">Contact Us</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2 w-50 my-lg-3 tex-center search" type="search" placeholder="Enter isbn">
+                        <button class="btn btn-outline-success btn-sm my-lg-3" id = "search" type="submit">Search</button>
+                      </form>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- showcase section -->
+        <section class="bg-dark text-light p-3">
+            <div class="container">
+                <form id="book-form" class="d-flex flex-column align-items-center justify-content-center">
+                    <!-- book -->
+                    <div class="mb-3 w-50">
+                        <label for="title" class = "form-label">Book:</label>
+                        <input type="text" class="form-control" id="title">
+                    </div>
+                    <!-- author -->
+                    <div class="mb-3 w-50">
+                        <label for="author" class = "form-label">Author:</label>
+                        <input type="text" class="form-control" id="author">
+                    </div>
+                    <!-- ISBN -->
+                    <div class="mb-3 w-50">
+                        <label for="isbn" class = "form-label">ISBN:</label>
+                        <input type="text" class="form-control" id="isbn">
+                    </div>
+                    <!-- submit button -->
+                    <button type="submit" class="btn btn-primary">Add a Book</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- table section -->
+        <section class="bg-dark text-light py-3 px-2">
+                <table class="table table-dark table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Book</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">ISBN</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="book-list"></tbody>
+                </table>
+        </section>
+        
+        <!-- footer-section -->
+        <section class="bg-dark text-white text-center position-relative py-5">
+            <div class="container">
+                <p class="lead">Copyright &copy; 2021 My BookList</p>
+            </div>
+        </section>
+
+        <script src="" async defer></script>
+        <script src = "./index.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>
