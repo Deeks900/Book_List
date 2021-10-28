@@ -23,6 +23,18 @@ class Store {
         return books;
     }
 
+    //check if isbn already exist
+    static checkISBN(isbn) {
+        const list = Store.getBooks();
+        for(let i=0; i<list.length; i++){
+           let ISBN = list[i].isbn;
+           if(ISBN === isbn){
+               return true;
+           } 
+        }
+        return false;
+    }
+
     //add books to local localStorage
     static addBooks(book) {
         const list = Store.getBooks();
@@ -87,7 +99,31 @@ class UI {
         //Now remove alert after 2 sec
         setTimeout(()=>{document.querySelector('.alert').remove()}
           , 3000);
-  }  
+  } 
+  
+  static searchBookList(el){
+
+    //grab the value entered in serach box and convert it in upper case
+    var input = el.value.toUpperCase();
+    //grab the book list displayed in UI
+    const listBooks = document.getElementById('book-list');
+    //get number of rows of the table
+    let n = listBooks.rows.length;
+    //get number of columne in a row
+    let m = listBooks.rows[0].cells.length;
+    //iterate through the rows
+    for(let i=0; i<n; i++){
+        //grab the data from cell of current row
+        let data = listBooks.rows[i].cells[0].innerHTML.toUpperCase();
+        if(data.indexOf(input) != -1){
+            listBooks.rows[i].style.display = '';
+        }
+        else{
+            listBooks.rows[i].style.display = 'none';
+        }
+    }
+    
+  }
 }
 
 //Event display Book
@@ -107,6 +143,10 @@ document.querySelector('#book-form').addEventListener('submit', (e)=>{
     if(title === '' || author === '' || isbn === '') {
         UI.showAlert('Please fill in all fields', 'danger');
       }
+    //always check that list has unique isbn
+    else if(Store.checkISBN(isbn) == true){
+        UI.showAlert('Book of this isbn already present', 'danger');
+    }
     else{
          //Instantiate a book
     const book = new Book(title, author, isbn);
@@ -137,3 +177,10 @@ document.querySelector('#book-list').addEventListener('click', (e)=>{
     UI.showAlert('Book Removed', 'success');
 })
 
+//Event search a book 
+document.querySelector('.search').addEventListener('keyup', (e)=>{
+
+    //function in UI class to search book
+    UI.searchBookList(e.target);
+    
+})
